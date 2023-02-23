@@ -1,0 +1,50 @@
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import MaterialReactTable from 'material-react-table';
+
+const Dashboard = (props) => {
+  const [fileList, setFileList] = useState([]);
+
+  useEffect(() => {
+    getFileDetails()
+  }, [])
+  
+
+  const getFileDetails = async() => {
+     let URL = "https://run.mocky.io/v3/80f79495-6ce9-4fd3-b26c-54ec72dba018";
+     await axios.get(URL).then((res) => {
+        if(res?.data?.data){
+            setFileList(res.data.data);
+        }
+      });
+
+  }
+
+
+  const columns = [
+      {
+        accessorKey: 'id', 
+        header: 'File ID',
+      },
+      {
+        accessorKey: 'name',
+        header: 'File Name',
+      },
+      {
+        accessorKey: 'size',
+        header: 'File Size',
+      },
+      {
+        accessorKey: 'contentType', 
+        header: 'Content Type',
+      }
+    ]
+
+  return (
+    <>
+     <MaterialReactTable columns={columns} data={fileList} />;
+
+    </>)
+  
+}
+export default Dashboard;

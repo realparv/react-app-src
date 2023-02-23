@@ -1,0 +1,23 @@
+import React from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Landingpg from './Component/Landingpg'
+import Login from './Component/Login.js'
+import Dashboard from './Component/Dashboard'
+// import './App.css'
+
+function App() {
+    return (
+        <Router>
+            <div>
+                <Routes>
+                    <Route exact path="/" element={<Landingpg/>} />
+                    <Route path="/login" element={<Login/>} />
+                    <Route path="/home" element={<Dashboard/>} />
+
+                </Routes>
+                {/* App.css */}
+            </div>
+        </Router>
+    )
+}
+export default App;
